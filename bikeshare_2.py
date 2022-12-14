@@ -171,6 +171,21 @@ def user_stats(df:pd.DataFrame):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+def display_data(df:pd.DataFrame):
+    display = input("Do you want to display the first 5 rows ?(Yes/No)").lower()
+    index = 5
+    start = 0
+
+    while(display!='no'):
+        if(display == 'yes'):
+            print(df[start:index])
+            index +=5
+            start +=5
+            display = input("Do you want to display the next 5 rows ?(Yes/No)").lower()
+        elif (display !='yes' or display != 'no'):
+                display = input('Please Enter (Yes or No)').lower()
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -180,6 +195,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        display_data(df)
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
